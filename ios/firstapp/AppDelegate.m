@@ -27,28 +27,25 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  NSURL *jsCodeLocation;
+  // NSURL *jsCodeLocation;
 
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
-#if TARGET_IPHONE_SIMULATOR
-  jsCodeLocation = [NSURL URLWithString:@"http://192.168.178.42:8081/index.ios.bundle?platform=ios&dev=true&minify=false"];
-#endif
+// #if TARGET_IPHONE_SIMULATOR
+//   jsCodeLocation = [NSURL URLWithString:@"http://192.168.178.42:8081/index.ios.bundle?platform=ios&dev=true&minify=false"];
+// #endif
 
-  // RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
+  RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
 
+  // RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
+  //                                                 moduleName:@"firstapp"
+  //                                                 initialProperties:nil
+  //                                                 launchOptions:launchOptions];
 
- 
-
-  RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                                  moduleName:@"firstapp"
-                                                  initialProperties:nil
-                                                  launchOptions:launchOptions];
-
-  // RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
-  //                                                  moduleName:@"firstapp"
-  //                                           initialProperties:nil];
+  RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
+                                                   moduleName:@"firstapp"
+                                            initialProperties:nil];
 
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 

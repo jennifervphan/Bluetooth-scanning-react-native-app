@@ -36,11 +36,6 @@ const MainContainer = () => {
 
   return (
       <>
-    <View>
-      <Text>Read</Text>
-    </View>
-
-
     {isScanning && (
               <ScanDevicesScreenContainer
                 onClose={() => setIsScanning(false)}

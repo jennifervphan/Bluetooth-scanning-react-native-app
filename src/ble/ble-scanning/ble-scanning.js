@@ -10,20 +10,21 @@ const FIXED_NAME = 'BLUNO';
 //
 export default class BleScanning {
   startScanning(onNewDevice) {
-    bleManager.startDeviceScan(["00000000-0000-1000-8000-00805F9B34FB"], null, (error, device) => {
+    console.log("in blescanning")
+    bleManager.startDeviceScan(null, null, (error, device) => {
 
-      console.log("test", device)
+      // console.log("test", device)
       if (!device) return;
       if (
-        device.name.toUpperCase().includes(FIXED_NAME) ||
-        device.localName.toUpperCase().includes(FIXED_NAME)
+        !!device.name ||
+        !!device.localName
       ) {
         onNewDevice({
           name: device.name ? device.name : '',
           id: device.id ? device.id : ''
         });
 
-        console.log('new DEVICE = ', device);
+        // console.log('new DEVICE = ', device);
       }
     });
   }

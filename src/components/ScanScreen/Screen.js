@@ -1,24 +1,18 @@
-import React, { useEffect, useCallback } from 'react';
-import { ActivityIndicator, LayoutAnimation } from 'react-native';
+import React, {useEffect, useCallback} from 'react';
+import {ActivityIndicator, LayoutAnimation, Text} from 'react-native';
 import DeviceItem from '../DeviceItem';
-import {
-  Container,
-  ExitButton,
-  Scanning,
-  ScanningText,
-  List
-} from './styled';
+import {Container, ExitButton, Scanning, ScanningText, List} from './styled';
 
 const LayoutAnimOpacity = {
   duration: 150,
   create: {
     type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity
+    property: LayoutAnimation.Properties.opacity,
   },
   delete: {
     type: LayoutAnimation.Types.easeInEaseOut,
-    property: LayoutAnimation.Properties.opacity
-  }
+    property: LayoutAnimation.Properties.opacity,
+  },
 };
 
 //
@@ -28,15 +22,21 @@ const ScanDevicesScreen = ({
   onClose,
   onDevicePress,
   isConnecting,
-  currentDevice
+  currentDevice,
 }) => {
-
-    console.log(devices)
-
+  
   return (
-    <Container>
-      <ExitButton onPress={onClose}/>
-      <List
+    <>
+      <ExitButton onPress={onClose} />
+      {devices.map(({name, id}) => (
+        <>
+          <Text key={id}>
+            {name} - {id}
+          </Text>
+          <Text>-------------------------</Text>
+        </>
+      ))}
+      {/* <List
         data={devices}
         renderItem={({ item, index }) => (
           <DeviceItem
@@ -53,8 +53,8 @@ const ScanDevicesScreen = ({
             <ScanningText>{'Scanning...'}</ScanningText>
           </Scanning>
         )}
-      />
-    </Container>
+      /> */}
+    </>
   );
 };
 
